@@ -29,7 +29,7 @@ export const FileFormatSelection: React.FC = () => {
 
       <div className="grid gap-6 md:grid-cols-3">
         {fileFormats.map((format) => {
-          const Icon = Icons[format.icon as keyof typeof Icons];
+          const Icon = Icons[format.icon as keyof typeof Icons] as React.ComponentType<{ size: number }>;
           const isSelected = selectedFormat === format.id;
 
           return (

@@ -6,11 +6,17 @@ import { useStore } from '../store';
 interface SceneCardProps {
   scene: SceneOption;
   isSelected: boolean;
+  className?: string;
 }
 
-export const SceneCard: React.FC<SceneCardProps> = ({ scene, isSelected }) => {
+export const SceneCard: React.FC<SceneCardProps> = ({ scene, isSelected, className }) => {
   const setSelectedScene = useStore((state) => state.setSelectedScene);
-  const Icon = Icons[scene.icon as keyof typeof Icons];
+  const IconComponent = Icons[scene.icon as keyof typeof Icons];
+
+  if (!IconComponent) {
+    console.warn(`Icon not found for ${scene.icon}`);
+    return null; // アイコンが見つからない場合は何も表示しない
+  }
 
   return (
     <button
@@ -19,7 +25,7 @@ export const SceneCard: React.FC<SceneCardProps> = ({ scene, isSelected }) => {
         isSelected
           ? 'bg-blue-50 border-2 border-blue-500 shadow-lg scale-105'
           : 'bg-white border border-gray-200 hover:border-blue-300 hover:shadow-md'
-      }`}
+      } ${className}`}
     >
       <div className="flex items-center gap-4">
         <div
@@ -27,7 +33,7 @@ export const SceneCard: React.FC<SceneCardProps> = ({ scene, isSelected }) => {
             isSelected ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-500'
           }`}
         >
-          <Icon size={24} />
+          {React.createElement(IconComponent as unknown as React.ElementType, { size: 24 })}
         </div>
         <div className="text-left">
           <h3 className="text-lg font-semibold text-gray-900">{scene.title}</h3>

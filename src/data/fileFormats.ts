@@ -8,12 +8,6 @@ export const fileFormats: FileFormatOption[] = [
     icon: 'FileText'
   },
   {
-    id: 'excel',
-    title: 'Excel形式',
-    description: 'データの編集や計算が可能なスプレッドシート形式',
-    icon: 'Table'
-  },
-  {
     id: 'word',
     title: 'Word形式',
     description: '文書の編集が可能なワープロ文書形式',
