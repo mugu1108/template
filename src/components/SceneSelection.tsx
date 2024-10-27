@@ -14,6 +14,7 @@ import { ConstructionTemplateOption } from '../types'; // ConstructionTemplateOp
 import { DaycareTemplateOption } from '../types'; // DaycareTemplateOptionをインポート
 import { EventTemplateOption } from '../types'; // EventTemplateOptionをインポート
 import { SchoolTemplateOption } from '../types'; // DaycareTemplateOptionをインポート
+import { TemplateOption } from '../types'; // TemplateOptionをインポート
 
 export const SceneSelection: React.FC = () => {
   const navigate = useNavigate();
@@ -47,6 +48,11 @@ export const SceneSelection: React.FC = () => {
       default:
         return [];
     }
+  };
+
+  const handleTemplateSelect = (templateId: string) => {
+    console.log('Template selected:', templateId); // デバッグ用
+    setSelectedTemplate(templateId as unknown as TemplateOption);
   };
 
   return (
@@ -86,8 +92,8 @@ export const SceneSelection: React.FC = () => {
               <TemplateCard
                 key={template.id}
                 template={template}
-                isSelected={selectedTemplate === template.id}
-                onSelect={() => setSelectedTemplate(template.id)}
+                isSelected={selectedTemplate !== null && selectedTemplate === (template.id as unknown as TemplateOption)}
+                onSelect={() => handleTemplateSelect(template.id)}
               />
             ))}
           </div>

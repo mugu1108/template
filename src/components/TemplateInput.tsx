@@ -8,6 +8,7 @@ import { daycareTemplates } from '../data/daycareTemplates';
 import { schoolTemplates } from '../data/schoolTemplates';
 import { eventTemplates } from '../data/eventTemplates';
 import { FormField } from '../types';
+import { Template } from '../types'; 
 
 export const TemplateInput: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const TemplateInput: React.FC = () => {
   
   const scene = scenes.find((s) => s.id === selectedScene);
 
-  const getTemplates = () => {
+  const getTemplates = (): Template[] => { // 戻り値の型を指定
     switch (selectedScene) {
       case 'nursing':
         return nursingTemplates;
@@ -34,7 +35,9 @@ export const TemplateInput: React.FC = () => {
     }
   };
 
-  const template = selectedTemplate && getTemplates().find((t) => t.id === selectedTemplate);
+  const template = selectedTemplate && getTemplates().find((t) => t.id === String(selectedTemplate));
+
+  console.log('Selected template:', template); // デバッグ用
 
   if (!scene || !template) return null;
 
@@ -44,8 +47,8 @@ export const TemplateInput: React.FC = () => {
     const data = Object.fromEntries(
       Array.from(formData.entries()).map(([key, value]) => [key, value instanceof File ? value.name : value])
     );
-    setFormData(data);
-    navigate('/format');
+    setFormData(data); // ここでデータを設定
+    navigate('/preview'); // プレビュー画面に遷移
   };
 
   const renderField = (field: FormField) => {
@@ -105,7 +108,7 @@ export const TemplateInput: React.FC = () => {
       <div className="bg-white rounded-lg shadow p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
-            {template.fields.map((field) => (
+            {template.fields.map((field: FormField) => ( // FormField型を指定
               <div key={field.id}>
                 <label htmlFor={field.id} className="block text-sm font-medium text-gray-700">
                   {field.label}

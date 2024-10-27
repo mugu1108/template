@@ -1,11 +1,13 @@
 export type Scene = 'nursing' | 'daycare' | 'school' | 'construction' | 'event';
 export type FileFormat = 'pdf' | 'word';
+
 export type NursingTemplate = 'daily' | 'vitals' | 'medication';
 export type DaycareTemplate = 'activityLog' | 'healthCheck' | 'communicationBook';
 export type ConstructionTemplate = 'safetyReport' | 'progressReport' | 'checklist';
 export type SchoolTemplate = 'gradeReport' | 'attendanceSheet' | 'classNewsletter';
 export type EventTemplate = 'schedule' | 'participantList' | 'budgetSheet';
 
+export type TemplateOption = NursingTemplateOption | DaycareTemplateOption | ConstructionTemplateOption | SchoolTemplateOption | EventTemplateOption;
 
 export interface SceneOption {
   id: Scene;
@@ -77,10 +79,17 @@ export interface FormData {
 export interface AppState {
   selectedScene: Scene | null;
   setSelectedScene: (scene: Scene | null) => void;
-  selectedTemplate: NursingTemplate | DaycareTemplate | ConstructionTemplate | null;
-  setSelectedTemplate: (template: NursingTemplate | DaycareTemplate | ConstructionTemplate | null) => void;
+  selectedTemplate: TemplateOption | null;
+  setSelectedTemplate: (template: TemplateOption | null) => void;
   formData: FormData;
   setFormData: (data: FormData) => void;
   selectedFormat: FileFormat | null;
   setSelectedFormat: (format: FileFormat | null) => void;
+}
+
+export interface Template {
+  id: string;
+  title: string;
+  description: string;
+  fields: FormField[]; // 既に存在するFormField型を使用
 }

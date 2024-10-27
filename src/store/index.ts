@@ -1,11 +1,11 @@
 import { create } from 'zustand';
-import { AppState, Scene, FormData, FileFormat, NursingTemplate, DaycareTemplate, SchoolTemplate, ConstructionTemplate, EventTemplate } from '../types';
+import { AppState, Scene, FormData, FileFormat, NursingTemplateOption, DaycareTemplateOption, ConstructionTemplateOption, SchoolTemplateOption, EventTemplateOption } from '../types';
 
 export const useStore = create<AppState>((set) => ({
   selectedScene: null,
   setSelectedScene: (scene: Scene | null) => set({ selectedScene: scene }),
   selectedTemplate: null,
-  setSelectedTemplate: (template: NursingTemplate | DaycareTemplate | ConstructionTemplate | null) => set({ selectedTemplate: template }),
+  setSelectedTemplate: (template: NursingTemplateOption | DaycareTemplateOption | ConstructionTemplateOption | SchoolTemplateOption | EventTemplateOption | null | undefined) => set({ selectedTemplate: template }),
   formData: {},
   setFormData: (data: FormData) => set({ formData: data }),
   selectedFormat: null,

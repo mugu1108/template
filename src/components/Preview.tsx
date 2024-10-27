@@ -1,69 +1,69 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FileText, Download, ArrowLeft } from 'lucide-react';
 import { useStore } from '../store';
-import { scenes } from '../data/scenes';
-import { fileFormats } from '../data/fileFormats';
+import jsPDF from 'jspdf';
 
 export const Preview: React.FC = () => {
-  const navigate = useNavigate();
-  const selectedScene = useStore((state) => state.selectedScene);
-  const selectedFormat = useStore((state) => state.selectedFormat);
   const formData = useStore((state) => state.formData);
 
-  const scene = scenes.find((s) => s.id === selectedScene);
-  const format = fileFormats.find((f) => f.id === selectedFormat);
-
-  if (!scene || !format || !formData) return null;
-
-  const handleDownload = () => {
-    // In a real application, this would trigger the actual file download
-    console.log('Downloading file...', { scene, format, formData });
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(12);
+    doc.text(`利用者名: ${formData.residentName}`, 10, 20);
+    doc.text(`居室番号: ${formData.roomNumber}`, 10, 30);
+    doc.text(`記録日: ${formData.careDate}`, 10, 40);
+    doc.text(`食事摂取状況: ${formData.mealStatus}`, 10, 50);
+    doc.text(`活動状況: ${formData.activityLevel}`, 10, 60);
+    doc.text(`特記事項: ${formData.notes}`, 10, 70);
+    doc.save('document.pdf');
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">プレビュー</h1>
-        <p className="text-gray-600">
-          生成されたドキュメントをご確認ください。
-        </p>
+    <div className="w-full max-w-4xl mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-4">プレビュー</h1>
+      <p className="text-gray-600 mb-8">生成されたドキュメントをご確認ください。</p>
+      <div className="bg-white rounded-lg shadow p-6">
+        <table className="min-w-full divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-gray-200">
+            <tr>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">利用者名</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formData.residentName}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">居室番号</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formData.roomNumber}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">記録日</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formData.careDate}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">食事摂取状況</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formData.mealStatus}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">活動状況</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formData.activityLevel}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">特記事項</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formData.notes}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-      <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <FileText className="text-blue-500" size={24} />
-            <div>
-              <h2 className="text-lg font-semibold">{formData.title}</h2>
-              <p className="text-sm text-gray-600">
-                {format.title} • {scene.title}
-              </p>
-            </div>
-          </div>
-          <span className="text-sm text-gray-500">{formData.date}</span>
-        </div>
-
-        <div className="border rounded-lg p-4 mb-6 min-h-[200px] bg-gray-50">
-          <pre className="whitespace-pre-wrap text-gray-700">{formData.content}</pre>
-        </div>
-
-        <div className="flex justify-between items-center">
-          <button
-            onClick={() => navigate('/format')}
-            className="btn btn-secondary flex items-center space-x-2"
-          >
-            <ArrowLeft size={20} />
-            <span>戻る</span>
-          </button>
-          <button
-            onClick={handleDownload}
-            className="btn btn-primary flex items-center space-x-2"
-          >
-            <Download size={20} />
-            <span>ダウンロード</span>
-          </button>
-        </div>
+      <div className="flex justify-between mt-8">
+        <button
+          className="btn btn-secondary"
+          onClick={() => window.history.back()}
+        >
+          戻る
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={handleDownloadPDF}
+        >
+          PDFダウンロード
+        </button>
       </div>
     </div>
   );

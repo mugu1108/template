@@ -1,10 +1,10 @@
-import React from 'react';
+// import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { SceneSelection } from './components/SceneSelection';
 import { TemplateInput } from './components/TemplateInput';
 import { FileFormatSelection } from './components/FileFormatSelection';
-import { Preview } from './components/Preview';
+import { Preview } from './components/Preview'; // 名前付きインポートに変更
 import { useStore } from './store';
 
 function App() {
