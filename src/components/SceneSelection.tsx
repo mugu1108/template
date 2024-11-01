@@ -9,12 +9,12 @@ import { eventTemplates } from '../data/eventTemplates';
 import { SceneCard } from './SceneCard';
 import { TemplateCard } from './TemplateCard';
 import { useStore } from '../store';
-import { NursingTemplateOption } from '../types'; // NursingTemplateOptionをインポート
-import { ConstructionTemplateOption } from '../types'; // ConstructionTemplateOptionをインポート
-import { DaycareTemplateOption } from '../types'; // DaycareTemplateOptionをインポート
-import { EventTemplateOption } from '../types'; // EventTemplateOptionをインポート
-import { SchoolTemplateOption } from '../types'; // DaycareTemplateOptionをインポート
-import { TemplateOption } from '../types'; // TemplateOptionをインポート
+import { NursingTemplateOption } from '../type'; // NursingTemplateOptionをインポート
+import { ConstructionTemplateOption } from '../type'; // ConstructionTemplateOptionをインポート
+import { DaycareTemplateOption } from '../type'; // DaycareTemplateOptionをインポート
+import { EventTemplateOption } from '../type'; // EventTemplateOptionをインポート
+import { SchoolTemplateOption } from '../type'; // DaycareTemplateOptionをインポート
+import { TemplateOption } from '../type'; // TemplateOptionをインポート
 
 export const SceneSelection: React.FC = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Icons from 'lucide-react';
-import { NursingTemplateOption } from '../types';
+import { NursingTemplateOption } from '../type';
 
 interface TemplateCardProps {
   template: NursingTemplateOption;

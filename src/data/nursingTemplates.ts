@@ -1,4 +1,4 @@
-import { NursingTemplateOption } from '../types';
+import { NursingTemplateOption } from '../type';
 
 export const nursingTemplates: NursingTemplateOption[] = [
   {

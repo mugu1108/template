@@ -1,4 +1,4 @@
-import {ConstructionTemplateOption } from '../types';
+import {ConstructionTemplateOption } from '../type';
 
 export const constructionTemplates: ConstructionTemplateOption[] = [
 {

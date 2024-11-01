@@ -1,4 +1,4 @@
-import { SceneOption } from '../types';
+import { SceneOption } from '../type';
 
 export const scenes: SceneOption[] = [
   {

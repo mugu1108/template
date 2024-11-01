@@ -7,8 +7,8 @@ import { constructionTemplates } from '../data/constructionTemplates';
 import { daycareTemplates } from '../data/daycareTemplates';
 import { schoolTemplates } from '../data/schoolTemplates';
 import { eventTemplates } from '../data/eventTemplates';
-import { FormField } from '../types';
-import { Template } from '../types'; 
+import { FormField } from '../type';
+import { Template } from '../type'; 
 
 export const TemplateInput: React.FC = () => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { DaycareTemplateOption } from '../types';
+import { DaycareTemplateOption } from '../type';
 
 export const daycareTemplates: DaycareTemplateOption[] = [
 {

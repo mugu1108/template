@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Icons from 'lucide-react';
-import { SceneOption, Scene } from '../types';
+import { SceneOption, Scene } from '../type';
 import { useStore } from '../store';
 
 interface SceneCardProps {
