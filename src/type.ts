@@ -21,6 +21,7 @@ export interface FileFormatOption {
   title: string;
   description: string;
   icon: string;
+  displayFields?: string[];
 }
 
 export interface NursingTemplateOption {

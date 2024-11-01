@@ -1,4 +1,4 @@
-import { SchoolTemplateOption } from '../types';
+import { SchoolTemplateOption } from '../type';
 
 export const schoolTemplates: SchoolTemplateOption[] = [
     {

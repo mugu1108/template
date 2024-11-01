@@ -1,4 +1,4 @@
-import { EventTemplateOption } from '../types';
+import { EventTemplateOption } from '../type';
 
 export const eventTemplates: EventTemplateOption[] = [
     {

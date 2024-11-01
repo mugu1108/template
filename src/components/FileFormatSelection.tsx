@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 import { useStore } from '../store';
 import { fileFormats } from '../data/fileFormats';
-import { FileFormat } from '../types';
+import { FileFormat } from '../type';
 
 export const FileFormatSelection: React.FC = () => {
   const navigate = useNavigate();
